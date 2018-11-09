@@ -5,8 +5,7 @@ public class MainDesktop {
 
   final static Dimension WINDOW_DIMENSION = new Dimension(1280, 720);
 
-  public static void main (String[] args)
-  {
+  public static void main (String[] args) {
     JFrame mainFrame = new JFrame();
     MainCanvas mainCanvas = new MainCanvas(mainFrame);
     mainCanvas.setSize(WINDOW_DIMENSION);
@@ -16,7 +15,7 @@ public class MainDesktop {
     mainFrame.getContentPane().setPreferredSize(WINDOW_DIMENSION);
     mainFrame.pack();
     mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    // mainFrame.setTitle(mainCanvas.getGameTitle());
+    mainFrame.setTitle(mainCanvas.getGameTitle());
     mainFrame.setVisible(true);
   }
 
