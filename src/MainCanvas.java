@@ -25,8 +25,7 @@ public class MainCanvas extends Canvas implements KeyListener, Runnable {
   }
 
   @Override
-  public void update(Graphics g)
-  {
+  public void update(Graphics g) {
     // Set up double buffering
     Graphics doubleBufferGraphics;
     BufferedImage doubleBuffer;
