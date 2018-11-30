@@ -41,7 +41,7 @@ public class MainCanvas extends Canvas implements KeyListener, Runnable {
     g.drawImage(doubleBuffer, 0, 0, this);
   }
 
-  @Override
+
   public void paint(Graphics g) {
     if (runThread == null) {
       // Start the main thread if it hasn't already and add a KeyListener
@@ -50,7 +50,7 @@ public class MainCanvas extends Canvas implements KeyListener, Runnable {
       runThread.start();
     }
 
-    g.drawRect(this.getWidth() / 2, this.getHeight() / 2, 80, 80);
+    g.drawRect(0, 0, 80, 80);
   }
 
   @Override
