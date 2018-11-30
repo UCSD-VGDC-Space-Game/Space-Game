@@ -13,7 +13,7 @@ public class MainCanvas extends Canvas implements KeyListener, Runnable {
   private String gameTitle;
   private Thread runThread;
   private ArrayList<Integer> pressedKeys;
-  Drawable player;
+  Player player;
 
   public MainCanvas(JFrame gameWindow) {
     super();
@@ -77,26 +77,7 @@ public class MainCanvas extends Canvas implements KeyListener, Runnable {
               future = new Point(player.getX() + SPEED, player.getY());
               break;
           }
-          // Ensure the player stays within the window
-          if (future != null) {
-            if (future.getX() < 0) {
-              future.setLocation(0, future.getY());
-            }
-            if (future.getY() < 0) {
-              future.setLocation(future.getX(), 0);
-            }
-            if (future.getX() >= 0 && future.getY() >= 0) {
-              if (future.getX() + player.getWidth(null) < this.getWidth() && future.getY() + player.getHeight(null) < this.getHeight()) {
-                player.setLocation(future);
-              } else if (future.getX() + player.getWidth(null) < this.getWidth()) {
-                player.setLocation(new Point((int) future.getX(), this.getHeight() - player.getHeight(null)));
-              } else if (future.getY() + player.getHeight(null) < this.getHeight()) {
-                player.setLocation(new Point(this.getWidth() - player.getWidth(null), (int) future.getY()));
-              } else {
-                player.setLocation(new Point(this.getWidth() - player.getWidth(null), this.getHeight() - player.getHeight(null)));
-              }
-            }
-          }
+          player.move(future, this.getWidth(), this.getHeight());
         }
       }
       catch (Exception e) {

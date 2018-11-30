@@ -6,8 +6,6 @@ abstract class Drawable {
   private int y;
   private Image asset;
 
-  public Drawable() {}
-
   public Drawable(int x, int y, Image asset) {
     this.x = x;
     this.y = y;
