@@ -14,6 +14,7 @@ public class MainCanvas extends Canvas implements KeyListener, Runnable {
   private Thread runThread;
   private ArrayList<Integer> pressedKeys;
   Player player;
+  Grid grid;
 
   public MainCanvas(JFrame gameWindow) {
     super();
@@ -21,6 +22,7 @@ public class MainCanvas extends Canvas implements KeyListener, Runnable {
     pressedKeys = new ArrayList<Integer>();
     this.addKeyListener(this);
     player = new Player(0, 0, null);
+    grid = new Grid(this);
   }
 
   public String getGameTitle() {
@@ -110,4 +112,12 @@ public class MainCanvas extends Canvas implements KeyListener, Runnable {
 
   @Override
   public void keyTyped(KeyEvent e) {}
+
+  public int getCanvasHeight() {
+    return this.getHeight();
+  }
+
+  public int getCanvasWidth() {
+    return this.getWidth();
+  }
 }
