@@ -8,16 +8,19 @@ import javax.swing.*;
 public class MainCanvas extends Canvas implements KeyListener, Runnable {
 
   private static final int FRAME_DELAY = 33;
+  private static final int SPEED = 5;
 
   private String gameTitle;
   private Thread runThread;
   private ArrayList<Integer> pressedKeys;
+  Drawable player;
 
   public MainCanvas(JFrame gameWindow) {
     super();
     gameTitle = "Space Game";
     pressedKeys = new ArrayList<Integer>();
     this.addKeyListener(this);
+    player = new Player(0, 0, null);
   }
 
   public String getGameTitle() {
@@ -49,8 +52,7 @@ public class MainCanvas extends Canvas implements KeyListener, Runnable {
       runThread = new Thread(this);
       runThread.start();
     }
-
-    g.drawRect(0, 0, 80, 80);
+    player.draw(g, null);
   }
 
   @Override
@@ -60,12 +62,26 @@ public class MainCanvas extends Canvas implements KeyListener, Runnable {
         // Loop through pressed keys to handle pressed
         Integer[] currentlyPressedKeys = pressedKeys.toArray(new Integer[pressedKeys.size()]); // Convert to array to avoid IndexOutOfBoundsException
         for (int key : currentlyPressedKeys) {
-          System.out.println(key);
+          switch (key){
+            case KeyEvent.VK_W:
+              player.setLocation(new Point(player.getX(), player.getY() - SPEED));
+              break;
+            case KeyEvent.VK_A:
+              player.setLocation(new Point(player.getX() - SPEED, player.getY()));
+              break;
+            case KeyEvent.VK_S:
+              player.setLocation(new Point(player.getX(), player.getY() + SPEED));
+              break;
+            case KeyEvent.VK_D:
+              player.setLocation(new Point(player.getX() + SPEED, player.getY()));
+              break;
+          }
         }
       }
       catch (Exception e) {
         e.printStackTrace();
       }
+      repaint();
       // Attempt to sleep the thread
       try {
         Thread.sleep(FRAME_DELAY);
